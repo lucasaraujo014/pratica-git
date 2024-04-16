@@ -37,3 +37,40 @@ Para apagar um branch é preciso primeiro apagá-lo localmente (1º comando) e d
 git log --graph --oneline
 ~~~
 
+O comando `log` exibe o histórico de commits em detalhes. Com as flags `--graph` e `--oneline` exibe o histórico em um formato mais compreensível, através de um grafo (grafo?)
+
+### Rebase interativo
+
+Para alterar o autor de um commit, você pode utilizar o rebase interativo e o comando `commit --amend`.
+
+**Antes, porém**, verifique se o editor de mensagens do commit está configurado para o editor do próprio VS Code.
+
+~~~bash
+git rebase -i <referenciaCommit>
+~~~
+
+A referência do commit deve ser sempre para o commit anterior ao commit que deve ser alterado.
+
+No editor de commits, altere a instrução do commit desejado de `pick` para `edit`. Em seguida grave e feche o editor.
+
+O rebase fará uma pausa para que você altere as informações do autor.
+
+~~~bash
+git commit --amend --reset-author  --no-edit
+~~~
+
+Caso você queira especificar o autor, utilize a flag `--author="Nome do Autor <email@autor>"`, nesse exato formato.
+
+Caso seu commit seja vazio, acrescente ainda a flag `--allow-empty`.
+
+Após o reparo do commit, continue o processo do rebase com o comando abaixo.
+
+~~~bash
+git rebase --continue
+~~~
+
+Finalmente, **confira o novo histórico localmente** e envie ao repositório remoto **forçadamente**.
+
+~~~bash
+git push --force
+~~~
