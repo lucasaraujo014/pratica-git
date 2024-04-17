@@ -88,3 +88,5 @@ Você deve fazer o push das tags para o repositório remoto separadamente com a 
 ~~~bash
 git push --tags 
 ~~~
+
+TODO: apagar tags
